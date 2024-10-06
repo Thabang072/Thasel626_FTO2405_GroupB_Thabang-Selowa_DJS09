@@ -1,16 +1,12 @@
-// Code Tidy
-
-import { showReviewTotal, populateUser, showDetails, getTopTwoReviews} from './utils'
-import { Permissions , LoyaltyUser } from './enums'
-import { Review, Property } from './interfaces'
-import MainProperty from './classes' 
+import { showReviewTotal, populateUser, showDetails, getTopTwoReviews} from './utils.ts'
+import { LoyaltyUser, Permissions } from './enums.ts'
+import { Review, Property } from './interfaces.ts'
+import { MainProperty } from './classes.ts' 
 const propertyContainer = document.querySelector('.properties')
 const reviewContainer = document.querySelector('.reviews')
 const container = document.querySelector('.container')
 const button = document.querySelector('button')
 const footer = document.querySelector('.footer')
-
-let isLoggedIn: boolean
 
 // Reviews
 const reviews: Review[] = [
@@ -35,8 +31,8 @@ const reviews: Review[] = [
 ]
 
 const you = {
-    firstName: 'Bobby',
-    lastName: 'Brown',
+    firstName: 'Thabang',
+    lastName: 'Selowa',
     permissions: Permissions.ADMIN,
     isReturning: true,
     age: 35,
@@ -100,7 +96,7 @@ const properties : Property[] = [
 ]
 
 // Functions
-showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
+showReviewTotal(reviews.length, reviews[0].name)
 
 populateUser(you.isReturning, you.firstName)
 
@@ -113,7 +109,7 @@ for (let i = 0; i < properties.length; i++) {
     image.setAttribute('src', properties[i].image)
     card.appendChild(image)
     showDetails(you.permissions, card, properties[i].price)
-    propertyContainer.appendChild(card)
+    propertyContainer!.appendChild(card)
 }
 
 let count = 0
@@ -125,16 +121,16 @@ function addReviews(array : Review[]) : void {
             const card = document.createElement('div')
             card.classList.add('review-card')
             card.innerHTML = topTwo[i].stars + ' stars from ' + topTwo[i].name
-            reviewContainer.appendChild(card)
+            reviewContainer!.appendChild(card)
         }
-        container.removeChild(button) 
+        container!.removeChild(button!) 
     }
 }
 
-button.addEventListener('click', () => addReviews(reviews))
+button!.addEventListener('click', () => addReviews(reviews))
 
 let currentLocation : [string, string, number] = ['Cape Town', '11.03', 17]
-footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
+footer!.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
 
 
 let yourMainProperty = new MainProperty(
@@ -150,4 +146,4 @@ let yourMainProperty = new MainProperty(
 const mainImageContainer = document.querySelector('.main-image')
 const image = document.createElement('img')
 image.setAttribute('src', yourMainProperty.src)
-mainImageContainer.appendChild(image)
+mainImageContainer!.appendChild(image)

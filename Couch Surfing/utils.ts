@@ -4,16 +4,16 @@ const userNameDisplay = document.querySelector('#user')
 import { LoyaltyUser, Permissions } from './enums'
 import  { Review } from './interfaces'
 
-export function showReviewTotal(value: number, reviewer: string, isLoyalty: LoyaltyUser) {
+export function showReviewTotal(value: number, reviewer: string) {
     const iconDisplay = LoyaltyUser.GOLD_USER ? '⭐' : ''
-    reviewTotalDisplay.innerHTML = value.toString() + ' review' + makeMultiple(value) + ' | last reviewed by ' + reviewer + ' ' + iconDisplay    
+    reviewTotalDisplay!.innerHTML = value.toString() + ' review' + makeMultiple(value) + ' | last reviewed by ' + reviewer + ' ' + iconDisplay    
 }
 
 export function populateUser(isReturning : boolean, userName: string ) {
     if (isReturning){
-        returningUserDisplay.innerHTML = 'back'
+        returningUserDisplay!.innerHTML = 'back'
     }
-    userNameDisplay.innerHTML = userName
+    userNameDisplay!.innerHTML = userName
 }
 
 export function showDetails(value: boolean | Permissions, element : HTMLDivElement, price: number) {
