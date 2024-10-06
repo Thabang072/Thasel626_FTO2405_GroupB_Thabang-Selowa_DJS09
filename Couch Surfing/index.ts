@@ -2,7 +2,7 @@
 
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews} from './utils'
 import { Permissions , LoyaltyUser } from './enums'
-import { Review, Property } from './interfaces'
+import { Review, Property } from './interfaces.ts'
 import MainProperty from './classes' 
 const propertyContainer = document.querySelector('.properties')
 const reviewContainer = document.querySelector('.reviews')
@@ -133,7 +133,7 @@ function addReviews(array : Review[]) : void {
 
 button.addEventListener('click', () => addReviews(reviews))
 
-let currentLocation : [string, string, number] = ['London', '11.03', 17]
+let currentLocation : [string, string, number] = ['Cape Town', '11.03', 17]
 footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
 
 
